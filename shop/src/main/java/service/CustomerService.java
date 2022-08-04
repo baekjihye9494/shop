@@ -6,18 +6,48 @@ import java.sql.SQLException;
 import repository.CustomerDao;
 import repository.OutIdDao;
 import vo.Customer;
+import vo.CustomerLogin;
 
 public class CustomerService {
-	// 회원탈퇴 액션페이지에서 호출되는 메서드
+	
+	//회원 로그인 메서두
+	public Customer getCustomerByIdAndPw(Customer paramCustomer) throws Exception {
+		// 객체 초기화
+		Connection conn = null;
+		Customer customer = null;
+		
+		try {
+			// conn 메서드실행할 객체생성
+			DBUtil dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
+			
+			CustomerDao customerDao = new CustomerDao();
+			customer = customerDao.selectCustomerByIdAndPw(conn, paramCustomer);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return customer;
+	}
+
+		
+		
+	// 회원탈퇴 메서드
 	public boolean removeCustomer(Customer paramCustomer) {
 		
 		Connection conn = null;
 		try {
 			conn = new DBUtil().getConnection();
-			conn.setAutoCommit(false); // executeUpdate()실행시 자동 커밋을 막음
+			conn.setAutoCommit(false); // executeUpdate()실행시 자동커밋막기
 			
 			CustomerDao customerDao = new CustomerDao();
-			if(customerDao.deleteCustomer(conn, paramCustomer) ==1) {
+			if(customerDao.deleteCustomer(conn, paramCustomer) !=1) {
 				throw new Exception();
 			}
 			OutIdDao OutIdDao = new OutIdDao();

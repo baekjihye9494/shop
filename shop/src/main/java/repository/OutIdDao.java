@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class OutIdDao {
 	// 탈퇴 회원의 아이디를 입력
 	// CustomerService.removeCustomer(Customer paramCustomer)가 호출 
-	public int insertOutId(Connection conn, String customerId)  throws SQLException, ClassNotFoundException {
+	public int insertOutId(Connection conn, String customerId) throws SQLException {
 
 		int row = 0;
 		

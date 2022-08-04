@@ -23,7 +23,7 @@
 		<div class="row">
 		<div class="col-lg-6">
 			<form action="<%=request.getContextPath()%>/customerloginAction.jsp" method="post" id="customerForm" class="form-control">
-				<h4>CUSTOMER</h4>
+				<h4>회원전용</h4>
 					<table class="table table-primary table-striped">
 						<tr>
 							<td>ID</td>
@@ -41,7 +41,7 @@
 			
 		<div class="col-lg-6">
 			<form action="<%=request.getContextPath()%>/employeeloginAction.jsp" method="post" id="employeeForm" class="form-control">
-				<h4>EMPLOYEE</h4>
+				<h4>직원전용</h4>
 					<table class="table table-primary table-striped">
 						<tr>
 							<td>ID</td>

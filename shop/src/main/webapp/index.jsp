@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.CustomerLogin"%>
-<%	
-	
-	if (session.getAttribute("loginCustomer") == null && session.getAttribute("loginEmployee") == null) {
-		response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
-		System.out.println("없음");
+<%
+	if(session.getAttribute("id") == null){
+		response.sendRedirect(request.getContextPath() + "/theme/loginForm.jsp?errorMsg=Not logged in");
 		return;
 	}
 %>
@@ -36,7 +34,7 @@
 		</div>
 		<div class="form-control">
 			<p>ID : <%=session.getAttribute("id")%></p>   <!-- 로그인 아이디 -->
-			<a href="<%=request.getContextPath()%>/loginOne.jsp" class="btn btn-dark">회원정보</a>
+			<a href="./loginOne.jsp" class="btn btn-dark">회원정보</a>
 			<a href="<%=request.getContextPath()%>/logout.jsp" class="btn btn-dark">로그아웃</a>
 		</div>
 	</div>

@@ -1,30 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.CustomerLogin" %>
-<%@ page import="model.LoginDto" %>
+<%@ page import="repository.*" %>
+<%@ page import="vo.*" %>
+<%@ page import="service.CustomerService"%>
 <%
-	request.setCharacterEncoding("utf-8");
-	
+	// 받아올 값 선언
 	String customerId = request.getParameter("customerId");
 	String customerPass = request.getParameter("customerPass");
-	System.out.println(customerId + " <-- id");
-	System.out.println(customerPass + " <-- pw");
 	
-	CustomerLogin login = new CustomerLogin();
-	LoginDto loginDto = new LoginDto();
-	login.setCustomerId(customerId);
-	login.setCustomerPass(customerPass);
+	// 디버깅
+	System.out.println("coutomerId : " + customerId);
+	System.out.println("customerPass : " + customerPass);
 	
-	CustomerLogin customerLogin = new CustomerLogin();
-	customerLogin = loginDto.customerLogin(login);
+		
+	// 객체생성한곳에 setter 로 값 저장하기 
+	Customer customer = new Customer();
+	customer.setCustomerId(customerId);
+	customer.setCustomerPass(customerPass);
 	
-	session.setAttribute("loginCustomer", customerLogin);
+	// 메서드 실행 객체생성
+	CustomerService customerService = new CustomerService();
+	Customer loginCustomer = new Customer();
+	loginCustomer = customerService.getCustomerByIdAndPw(customer);
 	
-	if(session.getAttribute("loginCustomer") == null) {
+	
+	// 디버깅
+	if(loginCustomer == null){ // 로그인 실패
+		System.out.println("login 실패");
+	
 		response.sendRedirect(request.getContextPath() + "/loginForm.jsp?errorMsg=fail");
-	} else {
+	} else { // 로그인 성공
+		// 세션에 setter로 로그인 한 정보 담기
 		session.setAttribute("user", "고객");
-		session.setAttribute("id", customerLogin.getCustomerId());
-		session.setAttribute("name", customerLogin.getCustomerName());
+		session.setAttribute("id", loginCustomer.getCustomerId());
+		session.setAttribute("name", loginCustomer.getCustomerName());
+		System.out.println("customer login 성공");		
+		
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
-%> 
+%>

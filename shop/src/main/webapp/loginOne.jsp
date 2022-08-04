@@ -1,14 +1,4 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.Customer"%>
-<%	
-	
-	if (session.getAttribute("loginCustomer") == null && session.getAttribute("loginEmployee") == null) {
-		response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
-		System.out.println("없음");
-		return;
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +33,8 @@
 				<table>	
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="hidden" name="id" value="<%=session.getAttribute("id")%>" readonly="readonly">
-						<td><input type="password" name="pw" value =""></td>
+						<td><input type="hidden" name="customerId" value="<%=session.getAttribute("id")%>" readonly="readonly">
+						<td><input type="password" name="customerPass" value =""></td>
 					</tr>
 				</table>
 				<button type= "submit" class="btn btn-dark">회원탈퇴</button>

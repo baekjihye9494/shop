@@ -35,7 +35,7 @@
 						</tr>
 					</table>
 					<button type="button" id="customerBtn" class="btn btn-dark">고객 로그인</button>
-					<a type="button" class="btn btn-dark">고객회원가입</a>
+					<a href="<%=request.getContextPath()%>/addCustomer.jsp">고객회원가입</a>
 			</form>
 		</div>
 			
@@ -53,7 +53,7 @@
 						</tr>
 					</table>
 					<button type="button" id="employeeBtn" class="btn btn-dark">스텝 로그인</button>
-					<a type="button" class="btn btn-dark">직원회원가입</a>
+					<a href="<%=request.getContextPath()%>/addEmployee.jsp">직원회원가입</a>
 			</form>
 		</div>
 		</div>

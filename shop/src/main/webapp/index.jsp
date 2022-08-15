@@ -5,7 +5,11 @@
 		response.sendRedirect(request.getContextPath() + "/theme/loginForm.jsp?errorMsg=Not logged in");
 		return;
 	}
+
+
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +36,7 @@
 		<div class="jumbotron text-center">
 			<h3><%=session.getAttribute("name")%> : <%=session.getAttribute("user")%>님 반갑습니다.</h3>
 		</div>
+		
 		<div class="form-control">
 			<p>ID : <%=session.getAttribute("id")%></p>   <!-- 로그인 아이디 -->
 			<a href="./loginOne.jsp" class="btn btn-dark">회원정보</a>

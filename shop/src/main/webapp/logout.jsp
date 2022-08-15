@@ -2,11 +2,11 @@
 <%
 	// 막기
 	if(session.getAttribute("id") == null){
-		response.sendRedirect(request.getContextPath() + "/theme/loginForm.jsp?errorMsg=wrong path");
+		response.sendRedirect(request.getContextPath() + "/loginForm.jsp?errorMsg=wrong path");
 		return;
 	}
-	
+
 	session.invalidate();
 	
-	response.sendRedirect(request.getContextPath() + "/theme/loginForm.jsp");
+	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 %>

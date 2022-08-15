@@ -32,7 +32,7 @@ public class Customer {
 	public void setCustomerAddress(String customerAddress) {
 		this.customerAddress = customerAddress;
 	}
-	public String getCustomerTelephone() {
+	public String getCustomerTelephone() { 
 		return customerTelephone;
 	}
 	public void setCustomerTelephone(String customerTelephone) {
@@ -58,4 +58,5 @@ public class Customer {
 				+ customerName + ", customerAddress=" + customerAddress + ", customerTelephone=" + customerTelephone
 				+ ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
 	}
-}
+
+	}

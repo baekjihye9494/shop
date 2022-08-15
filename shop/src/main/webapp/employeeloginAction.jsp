@@ -32,6 +32,6 @@
 		session.setAttribute("id", loginEmployee.getEmployeeId());
 		session.setAttribute("name", loginEmployee.getEmployeeName());
 		System.out.println("employee login 성공");
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/admin/adminIndex.jsp");
 	}
 %>

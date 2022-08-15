@@ -4,8 +4,31 @@ import service.DBUtil;
 import vo.Customer;
 
 public class CustomerDao {
+		//회원가입
+	   public int insertCustomer(Connection conn, Customer paramCustomer) throws Exception {
+		   	int row = 0;
+		      String sql = "INSERT INTO customer(customer_id, customer_pass, customer_name, customer_address, customer_telephone, update_date, create_date) VALUES(?,PASSWORD(?),?,?,?,NOW(),NOW())";
+		      PreparedStatement stmt = null;
+
+				try {
+					stmt = conn.prepareStatement(sql);
+					stmt.setString(1, paramCustomer.getCustomerId());
+					stmt.setString(2, paramCustomer.getCustomerPass());
+					stmt.setString(3, paramCustomer.getCustomerName());
+					stmt.setString(4, paramCustomer.getCustomerAddress());
+					stmt.setString(5, paramCustomer.getCustomerTelephone());
+
+					// 디버깅
+					System.out.println("stmt : " + stmt);
+					row = stmt.executeUpdate();
+				}finally {
+					if(stmt!=null) {
+						stmt.close();
+					}
+				}
+				return row;
+			}
 	//로그인
-	
 	public Customer selectCustomerByIdAndPw(Connection conn, Customer customer) throws Exception {
 		// 리턴할 객체 초기화
 		Customer loginCustomer = null;
@@ -20,7 +43,7 @@ public class CustomerDao {
 		stmt.setString(1, customer.getCustomerId());
 		stmt.setString(2, customer.getCustomerPass());
 		// 디버깅
-		System.out.println("loginCustomer method stmt : " + stmt);
+		System.out.println("stmt : " + stmt);
 		rs = stmt.executeQuery();
 		
 		if(rs.next()) {
@@ -29,8 +52,8 @@ public class CustomerDao {
 			loginCustomer.setCustomerId(rs.getString("customerId"));
 			loginCustomer.setCustomerName(rs.getString("customerName"));
 			// 디버깅
-			System.out.println("loginCustomer method customerId : " + loginCustomer.getCustomerId());
-			System.out.println("loginCustomer method customerName : " + loginCustomer.getCustomerName());
+			System.out.println("customerId : " + loginCustomer.getCustomerId());
+			System.out.println("customerName : " + loginCustomer.getCustomerName());
 		}
 		
 		return loginCustomer;
